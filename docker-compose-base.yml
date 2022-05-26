@@ -1,0 +1,25 @@
+version: "3"
+
+x-env: &env
+  env_file:
+    - .env
+
+x-common: &common
+  logging:
+    options:
+      max-size: "10m"
+      max-file: "5"
+  restart: always
+  hostname: services_${TAG:-local}
+
+
+services:
+
+  app:
+    image: delivery_system/app:${TAG:-latest}
+    container_name: back
+    <<: *common
+    <<: *env
+    command: bash -c "cd src/ && python main.py"
+    depends_on:
+      - rabbit

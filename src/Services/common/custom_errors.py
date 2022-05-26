@@ -1,3 +1,7 @@
+class ValueNotSetError(Exception):
+    pass
+
+
 class CarBrokenError(Exception):
     pass
 

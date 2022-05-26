@@ -1,0 +1,42 @@
+[tool.black]
+line-length = 120
+target-version = ['py310']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | env/*
+    | migrations/*
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+[tool.isort]
+profile = "black"
+skip_glob = '**/migrations/**'
+line_length = 120
+length_sort = true
+
+[tool.mypy]
+disable_error_code = 'misc'
+files = '**/*.py'
+ignore_missing_imports = true
+no_implicit_reexport = false
+disallow_untyped_defs = false
+show_error_codes = true
+show_error_context = true
+fast_module_lookup = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+warn_return_any = true
+warn_unused_ignores = true
