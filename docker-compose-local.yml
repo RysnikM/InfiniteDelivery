@@ -1,0 +1,28 @@
+version: "3"
+
+x-common: &common
+  logging:
+    options:
+      max-size: "10m"
+      max-file: "5"
+  restart: always
+  hostname: services_${TAG:-local}
+
+services:
+
+  app:
+    volumes:
+      - ./src:/app/src
+
+  rabbit:
+    image: rabbitmq:3.9.18-management-alpine
+    container_name: rabbit
+    volumes:
+      - mq_data:/var/lib/rabbitmq/
+    ports:
+      - 5672:5672
+      - 15671:15672
+    <<: *common
+
+volumes:
+  mq_data:

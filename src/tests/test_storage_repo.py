@@ -1,13 +1,14 @@
 from unittest import TestCase
 
-from Services.data.repo.storage_repo import DeliveryGenerator
-from Services.domain.entity.pachage import Package
+from Services.data.repo.storage_repo import PackageStorageRepo
+from Services.domain.entity.packages import PackageEnt
 
 
 class TestDeliveryGenerator(TestCase):
-    gen = DeliveryGenerator()
+    gen = PackageStorageRepo()
 
     """ Success """
+
     def test01(self):
         assert next(self.gen) != next(self.gen)
 
@@ -16,5 +17,4 @@ class TestDeliveryGenerator(TestCase):
 
     def test_get(self):
         assert self.gen.get()
-        assert isinstance(self.gen.get(), Package)
-
+        assert isinstance(self.gen.get(), PackageEnt)

@@ -1,7 +1,7 @@
-from enum import IntEnum
+from enum import Enum
 
 
-class PackingType(IntEnum):
+class PackingType(int, Enum):
     ENVELOPE = 0
     BOX = 1
     TUBE = 2
